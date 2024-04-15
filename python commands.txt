@@ -1,0 +1,16 @@
+# Train Command
+
+## Training both teacher and student
+
+### Original
+python run_glue.py --model_name_or_path google/bert_uncased_L-6_H-768_A-12 --teacher_model bert-base-uncased --task_name mnli --per_device_train_batch_size 32 --per_device_eval_batch_size 32 --learning_rate 1e-04 --t_learning_rate 3e-05 --alpha_kd 1.0 --temperature 1.0 --num_train_epochs 6 --output_dir ./train_out --eval_steps 10000 --do_train --do_eval --train_teacher --init_classifier_to_zero --use_lgtm --overwrite_output_dir
+
+### Reduced 
+python run_glue.py --model_name_or_path google/bert_uncased_L-4_H-256_A-4 --teacher_model google/bert_uncased_L-8_H-512_A-8 --task_name mnli --per_device_train_batch_size 32 --per_device_eval_batch_size 32 --learning_rate 1e-04 --t_learning_rate 1e-04 --alpha_kd 1.0 --temperature 0.9 --num_train_epochs 6 --output_dir ./train_out_BERT_med_mini --eval_steps 10000 --do_train --do_eval --train_teacher --init_classifier_to_zero --use_lgtm --overwrite_output_dir
+
+## Training only student
+python run_glue.py --model_name_or_path google/bert_uncased_L-6_H-768_A-12 --teacher_model bert-base-uncased --task_name mnli --per_device_train_batch_size 32 --per_device_eval_batch_size 32 --learning_rate 3e-05 --t_learning_rate 3e-05 --alpha_kd 1.0 --temperature 1.0 --num_train_epochs 6 --output_dir ./train_out --eval_steps 10000 --do_train --do_eval --init_classifier_to_zero --use_lgtm --overwrite_output_dir
+
+# Test/Inference Command
+
+python run_glue.py --model_name_or_path google/bert_uncased_L-6_H-768_A-12 --task_name mnli --per_device_eval_batch_size 32 --output_dir ./test_out_BERT_med_min --do_predict
