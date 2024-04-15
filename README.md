@@ -1,4 +1,9 @@
-# LGTM
+# Tailoring Instructions to Student’s Learning Levels Boosts Knowledge Distillation - LGTM
+
+## Team Members
+
+- Aryaman Rao Nagineni
+- Sourabh Swargam
 
 ## Introduction
 
